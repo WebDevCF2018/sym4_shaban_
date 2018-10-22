@@ -1,0 +1,37 @@
+{% extends 'template.html.twig' %}
+{% block title %}{{ parent() }} - {{ famille.getLintitule }}{% endblock %}
+ {% block titre %}{{ parent() }} - {{ famille.getLintitule }}{% endblock %}
+{% block stitre %}{{ famille.getBreve }} {% endblock %}
+ {% block menu %}
+     <ul class="navbar-nav ml-auto">
+         <li class="nav-item">
+             <a class="nav-link" href="{{ path("accueil") }}">Accueil
+                 <span class="sr-only">(current)</span>
+             </a>
+         </li>
+         {% for itemMenu in familles %}
+             {# if current section is selected on this loops'turn #}
+             {% if(itemMenu.getIdfamilles == famille.getIdfamilles) %}
+                 {# create forActive Twig's local variable#}
+                 {% set forActive = "active" %}
+             {% else %}
+                 {% set forActive = "" %}
+             {% endif %}
+             <li class="nav-item {{ forActive }}">
+                 <a class="nav-link" href="{{ path("detail_famille",{'id':itemMenu.getIdfamilles}) }}">{{ itemMenu.getLintitule }}</a>
+             </li>
+         {% endfor %}
+     </ul>
+ {% endblock %}
+ {% block contenu %}
+     {% for item in instruments %}
+         <h2>{{ item.getIntitule }}</h2>
+         <h3>
+             {% for categ in item.getFamillesfamilles %}
+                 {{ categ.getLintitule }} |
+             {% endfor %}
+         </h3>
+         <p>{{ item.getLadesc|truncate(350,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a></p>
+         <h4>Par {{ item.getRedacteurredacteur.getCname }} le {{ item.getParution|date("d/m/Y à H \\h i \\m") }}</h4><hr>
+     {% endfor %}
+ {% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'template.html.twig' %}
+{% block title %}{{ parent() }} - Accueil{% endblock %}
+
+{% block stitre %}Bienvenue sur notre site d'actualité pour Webdev{% endblock %}
+
+{% block menu %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ path("accueil") }}">Accueil
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        {% for itemMenu in familles %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path("detail_famille",{"id":itemMenu.getIdfamilles}) }}">{{ itemMenu.getLintitule }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{% block contenu %}
+    {% if instruments is empty %}
+        <h3>Il n'y a pas encore d'article sur notre site</h3><hr>
+    {% endif %}
+    {% for item in instruments %}
+        <h2>{{ item.getIntitule }}</h2>
+        <h3>
+            {% for categ in item.getFamillesfamilles %}
+                <a href="{{ path("detail_famille",{"id":categ.getIdfamilles}) }}">{{ categ.getLintitule }}</a> |
+            {% endfor %}
+        </h3>
+        <p>{{ item.getLadesc|truncate(350,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a></p>
+        <h4>Par {{ item.getRedacteurredacteur.getCname }} le {{ item.getParution|date("d/m/Y à H \\h i \\m") }}</h4><hr>
+    {% endfor %}
+{% endblock %}
+

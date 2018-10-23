@@ -3,9 +3,44 @@
 {% block title %}Instruments{% endblock %}
 
 {% block body %}
-    <h1>Instruments</h1>
+    {% block menu %}
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light static-top sb-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="{{ path("accueil") }}">Musical</a>
 
-    <table class="table">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="./">Accueil de l'administration
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item"> <a class="nav-link" href="{{ path('instruments_new') }}">Ajouter un article</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ path('the_logout')}}">Déconnexion</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+    <header class="page-heading">
+        <div class="container">
+            <h1>Instrument - {{ instrument.intitule }}</h1>
+        </div>
+    </header>
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="{{ path('instruments_index') }}">Retour à la liste</a></li>
+        </ol>
+    </div>
+
+    <div class="container">
+    <table class="table sb-card">
         <tbody>
             <tr>
                 <th>Idinstruments</th>
@@ -26,9 +61,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('instruments_index') }}">back to list</a>
-
-    <a href="{{ path('instruments_edit', {'idinstruments': instrument.idinstruments}) }}">edit</a>
+    <a href="{{ path('instruments_edit', {'idinstruments': instrument.idinstruments}) }}">Modifier</a>
 
     {{ include('instruments/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

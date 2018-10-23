@@ -4,20 +4,39 @@
 
 {% block body %}
     {% block menu %}
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light static-top sb-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path("accueil") }}">Musical</a>
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ path("instruments_index") }}">
-                    Accueil de l'administration
+                <a class="nav-link" href="./">Accueil de l'administration
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item"> <a class="nav-link"
-                                     href="{{ path('the_logout')}}">Déconnexion</a></li>
-        </ul>
-    {% endblock %}
-    <h1>Instruments index</h1>
 
-    <table class="table">
+            <li class="nav-item"> <a class="nav-link" href="{{ path('instruments_new') }}">Ajouter un article</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ path('the_logout')}}">Déconnexion</a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+    {% endblock %}
+    <header class="page-heading">
+        <div class="container">
+            <h1>La liste d'instruments</h1>
+        </div>
+    </header>
+    <div class="container">
+
+
+    <table class="table sb-card">
         <thead>
             <tr>
                 <th>Idinstruments</th>
@@ -35,8 +54,8 @@
                 <td>{{ instrument.ladesc }}</td>
                 <td>{{ instrument.parution ? instrument.parution|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('instruments_show', {'idinstruments': instrument.idinstruments}) }}">show</a>
-                    <a href="{{ path('instruments_edit', {'idinstruments': instrument.idinstruments}) }}">edit</a>
+                    <a href="{{ path('instruments_show', {'idinstruments': instrument.idinstruments}) }}">Voir</a>
+                    <a href="{{ path('instruments_edit', {'idinstruments': instrument.idinstruments}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -46,6 +65,6 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('instruments_new') }}">Create new</a>
 {% endblock %}

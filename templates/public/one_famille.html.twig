@@ -37,7 +37,7 @@
                                  {{ item.getIntitule }}
                              </h4>
                              <p class="mb-0">
-                                 {{ item.getLadesc|truncate(350,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a>
+                                 {{ item.getLadesc|truncate(450,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a>
                              </p>
                              <ul class="list-inline">
                                  {% for categ in item.getFamillesfamilles %}

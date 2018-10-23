@@ -8,27 +8,27 @@
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light static-top sb-navbar">
-            <div class="container">
-                <a class="navbar-brand" href="{{ path("accueil") }}">Musical</a>
+        <div class="container">
+        <a class="navbar-brand" href="{{ path("accueil") }}">Musical</a>
 
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+        <button class="navbar-toggler navbar-toggler-right" id="button1"data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="collapseExample">
 
     {% endblock %}
 
     {% block menu %}{% endblock %}
 
-{% block entete_bas %}
+    {% block entete_bas %}
 
 
 
-    </div>
-    </div>
-    </nav>
-{% endblock %}
+        </div>
+        </div>
+        </nav>
+    {% endblock %}
 
     {% block content %}
         <!-- Page Content -->
@@ -47,7 +47,7 @@
             </ol>
         </div>
 
-                        {% block contenu %}Le texte de la page{% endblock %}
+        {% block contenu %}Le texte de la page{% endblock %}
 
     {% endblock %}
 

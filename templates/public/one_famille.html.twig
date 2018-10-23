@@ -1,5 +1,5 @@
 {% extends 'template.html.twig' %}
-{% block title %}{{ parent() }} - {{ famille.getLintitule }}{% endblock %}
+
  {% block titre %}{{ parent() }} - {{ famille.getLintitule }}{% endblock %}
 {% block stitre %}{{ famille.getBreve }} {% endblock %}
  {% block menu %}
@@ -23,15 +23,52 @@
          {% endfor %}
      </ul>
  {% endblock %}
+{% block lien1 %}{{ famille.getLintitule }}{% endblock %}
  {% block contenu %}
-     {% for item in instruments %}
-         <h2>{{ item.getIntitule }}</h2>
-         <h3>
-             {% for categ in item.getFamillesfamilles %}
-                 {{ categ.getLintitule }} |
-             {% endfor %}
-         </h3>
-         <p>{{ item.getLadesc|truncate(350,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a></p>
-         <h4>Par {{ item.getRedacteurredacteur.getCname }} le {{ item.getParution|date("d/m/Y à H \\h i \\m") }}</h4><hr>
-     {% endfor %}
+     <div class="container">
+         <div class="row">
+             <div class="col-lg-7">
+                 {% for item in instruments %}
+
+                     <div class="card sb-card download-links">
+                         <div class="card-body">
+                             <h4>
+                                 {{ item.getIntitule }}
+                             </h4>
+                             <p class="mb-0">
+                                 {{ item.getLadesc|truncate(350,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a>
+                             </p>
+                             <ul class="list-inline">
+                                 {% for categ in item.getFamillesfamilles %}
+                                     <li class="list-inline-item">
+                                         <a href="{{ path("detail_famille",{"id":categ.getIdfamilles}) }}" class="btn btn-secondary">
+                                             <i class="fab fa-github"></i>
+                                             {{ categ.getLintitule }}</a>
+                                     </li>
+                                 {% endfor %}
+
+                             </ul>
+                         </div>
+                     </div>
+
+                 {% endfor %}
+             </div>
+             <div class="col-lg-5">
+                 <div class="card sb-card download-links">
+                     <div class="card-body">
+                         <h4>
+                            Informations
+                         </h4>
+                         <p class="mb-0">
+
+                         </p>
+
+                     </div>
+
+
+                 </div>
+
+             </div>
+         </div>
+     </div>
  {% endblock %}

@@ -19,14 +19,55 @@
         <li class="nav-item"> <a class="nav-link" href="#">Admin</a></li>
     </ul>
 {% endblock %}
-
+{% block lien1 %}{{ instruments.getIntitule }}{% endblock %}
 {% block contenu %}
-    <h2>{{ instruments.getIntitule }}</h2>
-    <h3>
-        {% for categ in instruments.getFamillesfamilles %}
-            <a href="{{ path("detail_famille",{"id":categ.getIdfamilles}) }}">{{ categ.getLintitule }}</a> |
-        {% endfor %}
-    </h3>
-    <p>{{ instruments.getLadesc|nl2br }}</p>
-    <h4>Par {{ instruments.getRedacteurredacteur.getCname }} le {{ instruments.getParution|date("d/m/Y à H \\h i \\m") }}</h4><hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+
+
+                    <div class="card sb-card download-links">
+                        <div class="card-body">
+                            <h4>
+                                {{ instruments.getIntitule }}
+                            </h4>
+                            <p class="mb-0">
+                                {{ instruments.getLadesc|nl2br }}
+                            </p>
+
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="col-lg-5">
+                <div class="card sb-card download-links">
+                    <div class="card-body">
+                        <h4>
+                            Informations
+                        </h4>
+                        <p class="mb-0">
+                                Par <b>{{ instruments.getRedacteurredacteur.getCname }}</b> <br> le <b>{{ instruments.getParution|date("d/m/Y à H \\h i \\m") }}</b>
+
+                        </p>
+                        <ul class="list-inline">
+                            {% for categ in instruments.getFamillesfamilles %}
+                                <li class="list-inline-item">
+                                    <a href="{{ path("detail_famille",{"id":categ.getIdfamilles}) }}" class="btn btn-secondary">
+                                        <i class="fab fa-github"></i>
+                                        {{ categ.getLintitule }}</a>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
 {% endblock %}

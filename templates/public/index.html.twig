@@ -22,15 +22,68 @@
     {% if instruments is empty %}
         <h3>Il n'y a pas encore d'article sur notre site</h3><hr>
     {% endif %}
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-7">
     {% for item in instruments %}
-        <h2>{{ item.getIntitule }}</h2>
-        <h3>
-            {% for categ in item.getFamillesfamilles %}
-                <a href="{{ path("detail_famille",{"id":categ.getIdfamilles}) }}">{{ categ.getLintitule }}</a> |
-            {% endfor %}
-        </h3>
-        <p>{{ item.getLadesc|truncate(350,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a></p>
-        <h4>Par {{ item.getRedacteurredacteur.getCname }} le {{ item.getParution|date("d/m/Y à H \\h i \\m") }}</h4><hr>
+
+        <!--<h4>Par {{ item.getRedacteurredacteur.getCname }} le {{ item.getParution|date("d/m/Y à H \\h i \\m") }}</h4><hr> !-->
+
+
+
+                    <div class="card sb-card download-links">
+                        <div class="card-body">
+                            <h4>
+                                {{ item.getIntitule }}
+                            </h4>
+                            <p class="mb-0">
+                                {{ item.getLadesc|truncate(350,true) }} <a href="{{ path("detail_instrument",{'id': item.getIdinstruments}) }}">Lire la suite</a>
+                            </p>
+                            <ul class="list-inline">
+                                {% for categ in item.getFamillesfamilles %}
+                                    <li class="list-inline-item">
+                                        <a href="{{ path("detail_famille",{"id":categ.getIdfamilles}) }}" class="btn btn-secondary">
+                                            <i class="fab fa-github"></i>
+                                            {{ categ.getLintitule }}</a>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+
     {% endfor %}
+    </div>
+        <div class="col-lg-5">
+
+            <div class="card sb-card">
+                <div class="card-body">
+                    <h4>Features:</h4>
+                    <ul class="mb-0">
+                        <li>
+                            <i class="fas fa-balance-scale text-muted"></i>
+                            <strong>
+                                <a href="https://github.com/BlackrockDigital/startbootstrap-stylish-portfolio/blob/master/LICENSE">MIT License</a>
+                            </strong>
+                        </li>
+                        <li>Built to support the
+                            <strong>latest, stable releases</strong>
+                            of all major browsers and platforms.</li>
+                        <li>Fully responsive HTML template created with Bootstrap 4</li>
+                        <li>Updated design featuring two custom button styles</li>
+                        <li>Off canvas navigation with custom toggle button</li>
+                        <li>100% height header section with full page background image and vertically centered content</li>
+                        <li>Smooth page scrolling using jQuery</li>
+                        <li>Call to action sections</li>
+                        <li>Services section with Font Awesome icons</li>
+                        <li>Portfolio image grid</li>
+                        <li>Google Maps integrated footer</li>
+                        <li>Footer with social icons</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 {% endblock %}
 

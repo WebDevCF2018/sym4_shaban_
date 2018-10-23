@@ -108,5 +108,9 @@ class Familles
 
         return $this;
     }
+    public function __toString()
+    {
+        return (string) $this->getLintitule();
+    }
 
 }

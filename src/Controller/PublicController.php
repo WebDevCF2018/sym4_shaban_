@@ -21,7 +21,7 @@ class PublicController extends AbstractController
         $fam = $entityManager->getRepository(Familles::class)->findAll();
 
         // get all articles from db
-        $inst = $entityManager->getRepository(Instruments::class)->findAll();
+        $inst = $entityManager->getRepository(Instruments::class)->findBy([],["idinstruments"=>"DESC"]);
 
         return $this->render('public/index.html.twig', [
             'familles' => $fam,

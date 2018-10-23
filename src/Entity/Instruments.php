@@ -75,6 +75,7 @@ class Instruments
     public function __construct()
     {
         $this->famillesfamilles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setParution(new \DateTime());
     }
 
     public function getIdinstruments(): ?int

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Instruments index{% endblock %}
+
+{% block body %}
+    {% block menu %}
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ path("instruments_index") }}">
+                    Accueil de l'administration
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item"> <a class="nav-link"
+                                     href="{{ path('the_logout')}}">Déconnexion</a></li>
+        </ul>
+    {% endblock %}
+    <h1>Instruments index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idinstruments</th>
+                <th>Intitule</th>
+                <th>Ladesc</th>
+                <th>Parution</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instrument in instruments %}
+            <tr>
+                <td>{{ instrument.idinstruments }}</td>
+                <td>{{ instrument.intitule }}</td>
+                <td>{{ instrument.ladesc }}</td>
+                <td>{{ instrument.parution ? instrument.parution|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('instruments_show', {'idinstruments': instrument.idinstruments}) }}">show</a>
+                    <a href="{{ path('instruments_edit', {'idinstruments': instrument.idinstruments}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('instruments_new') }}">Create new</a>
+{% endblock %}

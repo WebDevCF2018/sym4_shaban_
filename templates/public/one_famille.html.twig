@@ -1,7 +1,7 @@
 {% extends 'template.html.twig' %}
 
  {% block titre %}{{ parent() }} - {{ famille.getLintitule }}{% endblock %}
-{% block stitre %}{{ famille.getBreve }} {% endblock %}
+{% block stitre %}{% endblock %}
  {% block menu %}
      <ul class="navbar-nav ml-auto">
          <li class="nav-item">
@@ -21,6 +21,7 @@
                  <a class="nav-link" href="{{ path("detail_famille",{'id':itemMenu.getIdfamilles}) }}">{{ itemMenu.getLintitule }}</a>
              </li>
          {% endfor %}
+         <li class="nav-item"> <a class="nav-link" href="{{ path('instruments_index')}}">Admin</a></li>
      </ul>
  {% endblock %}
 {% block lien1 %}{{ famille.getLintitule }}{% endblock %}
@@ -60,7 +61,7 @@
                             Informations
                          </h4>
                          <p class="mb-0">
-
+                             {{ famille.getBreve }}
                          </p>
 
                      </div>

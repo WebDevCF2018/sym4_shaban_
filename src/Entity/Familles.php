@@ -41,6 +41,7 @@ class Familles
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Instruments", mappedBy="famillesfamilles")
+     * @ORM\OrderBy({"idinstruments" = "DESC"})
      */
     private $instrumentsinstruments;
 
